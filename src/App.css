@@ -1,19 +1,18 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
 .game-container {
-  position: relative;
+  background-color: black;
   background-image: url("./assets/images/backgroundGame.jpg");
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: center;
-  min-width: 130vh;
-  min-height: 90vh;
+  max-width: 130vh;
   border-radius: 50%;
+  min-height: 90vh;
   margin: 0 auto;
   display: flex;
 }
