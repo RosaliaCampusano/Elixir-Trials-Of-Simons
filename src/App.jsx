@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import useSound from "use-sound";
-import simon from "./assets/sounds/sprite.mp3";
+import simonPotions from "./assets/sounds/potions.mp3";
 import "./App.css";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   const redRef = useRef(null);
 
   //Sounds
-  const [play] = useSound(simon, {
+  const [play] = useSound(simonPotions, {
     sprite: {
       one: [0, 500],
       two: [1000, 500],
@@ -21,24 +21,24 @@ function App() {
     },
   });
 
-  const colors = [
+  const potions = [
     {
-      color: "#011320",
+      color: "#0e3e5eff",
       ref: yellowRef,
       sound: "one",
     },
     {
-      color: "#3e0a02",
+      color: "#811b0bff",
       ref: blueRef,
       sound: "two",
     },
     {
-      color: "#0f1d01",
+      color: "#2e540bff",
       ref: redRef,
       sound: "three",
     },
     {
-      color: "#b7530a",
+      color: "#bd5b15ff",
       ref: greenRef,
       sound: "four",
     },
@@ -49,7 +49,7 @@ function App() {
   const maxNumber = 3;
   const speedGame = 400;
 
-  //State of game --- !!! Optimize it ----
+  //State of game
   const [sequence, setSequence] = useState([]); // Almacenara la secuencia que va generando el juego
   const [currentGame, setCurrentGame] = useState([]); //la secuencia que va ejecutando el juego
   const [isAllowedToPlay, setIsAllowedToPlay] = useState(false); //booleano para permitir pulsar la tecla
@@ -75,12 +75,14 @@ function App() {
 
   const handlerClick = (index) => {
     if (isAllowedToPlay) {
-      play({ id: colors[index].sound });
-      colors[index].ref.current.style.opacity = 1;
-      colors[index].ref.current.style.scale = 0.9;
+      play({ id: potions[index].sound });
+      potions[index].ref.current.style.filter = "blur(15px)";
+      potions[index].ref.current.style.opacity = 1;
+      potions[index].ref.current.style.transition = "all 0.3s ease-out";
       setTimeout(() => {
-        colors[index].ref.current.style.opacity = 0.5;
-        colors[index].ref.current.style.scale = 1;
+        potions[index].ref.current.style.filter = "none";
+        potions[index].ref.current.style.opacity = 0;
+        potions[index].ref.current.style.scale = 1;
         setCurrentGame([...currentGame, index]);
         setPulses(pulses + 1);
       }, speed / 2);
@@ -93,10 +95,10 @@ function App() {
         setSuccess(success + 1);
       } else {
         const index = sequence[pulses - 1];
-        if (index) colors[index].ref.current.style.opacity = 1;
+        if (index) potions[index].ref.current.style.opacity = 0;
         play({ id: "error" });
         setTimeout(() => {
-          if (index) colors[index].ref.current.style.opacity = 0.5;
+          if (index) potions[index].ref.current.style.opacity = 0;
           setIsGameOn(false);
         }, speed * 2);
         setIsAllowedToPlay(false);
@@ -132,10 +134,13 @@ function App() {
     if (!isAllowedToPlay) {
       sequence.map((item, index) => {
         setTimeout(() => {
-          play({ id: colors[item].sound });
-          colors[item].ref.current.style.opacity = 1;
+          play({ id: potions[item].sound });
+          potions[item].ref.current.style.filter = "blur(15px)";
+          potions[item].ref.current.style.opacity = 1;
+          potions[item].ref.current.style.transition = "all 0.3s ease-out";
           setTimeout(() => {
-            colors[item].ref.current.style.opacity = 0.5;
+            potions[item].ref.current.style.filter = "none";
+            potions[item].ref.current.style.opacity = 0;
           }, speed / 2);
         }, speed * index);
       });
@@ -149,7 +154,7 @@ function App() {
         <div className="game-container">
           <div className="header">{/*  <h1>Turn {turn}</h1> */}</div>
           <div className="potions-container">
-            {colors.map((item, index) => {
+            {potions.map((item, index) => {
               return (
                 <div
                   key={index}
@@ -158,6 +163,7 @@ function App() {
                   style={{
                     backgroundColor: `${item.color}`,
                     opacity: 0,
+                    transition: "all 0.3s ease-out",
                   }}
                   onClick={() => handlerClick(index)}
                 ></div>
