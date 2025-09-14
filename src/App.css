@@ -5,47 +5,66 @@
   text-align: center;
 }
 
-.container {
-  display: flex;
+.game-container {
+  position: relative;
+  background-image: url("./assets/images/backgroundGame.jpg");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  min-width: 130vh;
+  min-height: 90vh;
+  border-radius: 50%;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
 }
 
-.center-container {
+.potions-container {
+  justify-content: center;
+  align-items: center;
+  width: 65vh;
+  height: 61.5vh;
   position: absolute;
-  border-radius: 300px;
-  background-color: black;
-  width: 600px;
-  height: 600px;
-}
-
-.pad {
-  width: 250px;
-  margin: 25px;
-}
-
-.pad:hover {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
   cursor: pointer;
 }
 
-.pad-0 {
-  border-top-left-radius: 300px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+.potions-0 {
+  width: 11vh;
+  height: 10vh;
+  top: 75%;
+  left: 3%;
 }
-.pad-1 {
-  border-top-right-radius: 300px;
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+
+.potions-1 {
+  width: 11vh;
+  height: 10vh;
+  top: 75%;
+  left: 25%;
 }
-.pad-2 {
-  border-bottom-left-radius: 300px;
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+
+.potions-2 {
+  width: 11vh;
+  height: 10vh;
+  top: 75%;
+  left: 46%;
 }
-.pad-3 {
-  border-bottom-right-radius: 300px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+
+.potions-3 {
+  width: 11vh;
+  height: 10vh;
+  top: 75%;
+  left: 67%;
+}
+
+.potions-0,
+.potions-1,
+.potions-2,
+.potions-3 {
+  position: absolute;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 200px;
+  border-bottom-left-radius: 200px;
 }

@@ -23,22 +23,22 @@ function App() {
 
   const colors = [
     {
-      color: "#FAF303",
+      color: "#011320",
       ref: yellowRef,
       sound: "one",
     },
     {
-      color: "#030AFA",
+      color: "#3e0a02",
       ref: blueRef,
       sound: "two",
     },
     {
-      color: "#FA0E03",
+      color: "#0f1d01",
       ref: redRef,
       sound: "three",
     },
     {
-      color: "#0AFA03",
+      color: "#b7530a",
       ref: greenRef,
       sound: "four",
     },
@@ -116,27 +116,55 @@ function App() {
     }
   }, [isGameOn]);
 
+  useEffect(() => {
+    if (success === sequence.length && success > 0) {
+      setSpeed(speed - sequence.length * 2);
+      setTimeout(() => {
+        setSuccess(0);
+        setPulses(0);
+        setCurrentGame([]);
+        randomNUmber();
+      }, 500);
+    }
+  }, [success]);
+
+  useEffect(() => {
+    if (!isAllowedToPlay) {
+      sequence.map((item, index) => {
+        setTimeout(() => {
+          play({ id: colors[item].sound });
+          colors[item].ref.current.style.opacity = 1;
+          setTimeout(() => {
+            colors[item].ref.current.style.opacity = 0.5;
+          }, speed / 2);
+        }, speed * index);
+      });
+    }
+    setIsAllowedToPlay(true);
+  }, [sequence]);
+
   return (
     <>
       {isGameOn ? (
-        <>
-          <div className="header">
-            <h1>Turn {turn}</h1>
-          </div>
-          <div className="container">
+        <div className="game-container">
+          <div className="header">{/*  <h1>Turn {turn}</h1> */}</div>
+          <div className="potions-container">
             {colors.map((item, index) => {
               return (
                 <div
                   key={index}
                   ref={item.ref}
-                  className={`pad pad-${index}`}
-                  style={{ backgroundColor: `${item.color}`, opacity: 0.6 }}
+                  className={`potions-${index}`}
+                  style={{
+                    backgroundColor: `${item.color}`,
+                    opacity: 0,
+                  }}
                   onClick={() => handlerClick(index)}
                 ></div>
               );
             })}
           </div>
-        </>
+        </div>
       ) : (
         <>
           <div className="header">
