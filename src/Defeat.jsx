@@ -3,7 +3,7 @@ import defeatImage from "./assets/images/defeatBackground.png";
 import "./Defeat.css";
 import { useState, useEffect } from "react";
 
-function Defeat({ ref }) {
+function Defeat({ ref, setState }) {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -12,11 +12,19 @@ function Defeat({ ref }) {
     setMessage(randomMessage);
   }, []);
 
+  const handlerClick = () => {
+    setState(0);
+  };
+
   return (
-    <dialog open ref={ref} className="defeat">
+    <dialog closedby="none" ref={ref} className="defeat">
       <img src={defeatImage} alt="Defeat background" className="defeat-img" />
-      <p className="defeat-message">{message}</p>
-      <button className="defeatButton">Main menu</button>
+      <div className="defeat-container">
+        <p className="defeat-message">{message}</p>
+        <button className="defeatButton" onClick={handlerClick}>
+          Main Menu
+        </button>
+      </div>
     </dialog>
   );
 }
