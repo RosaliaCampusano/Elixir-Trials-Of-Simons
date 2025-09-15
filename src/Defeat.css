@@ -1,42 +1,59 @@
 .defeat {
-  position: relative;
-  justify-content: center;
-  justify-items: center;
-  max-width: 50vh;
+  font-family: KochAltschrift;
+  max-width: 80vh;
   min-height: 40vh;
+  background: none;
+  border: none;
+  overflow: hidden;
 }
 
-@font-face {
-  font-family: KochAltschrift;
-  src: url("./assets/fonts/KochAltschrift.ttf");
+.defeat-container {
+  justify-content: center;
+  align-items: center;
+  width: 70vh;
+  height: 75vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
 }
 
 .defeat-message {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
+  gap: 1px;
+  position: absolute;
+  text-align: center;
   max-width: 30vh;
   text-wrap-mode: wrap;
-  font-family: KochAltschrift;
-  transform: translate(-50%, 35%);
+  top: 35%;
+  left: 29%;
   z-index: 1;
 }
 
 .defeat-img {
-  position: absolute;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  width: 65vh;
+  min-height: 55vh;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 50vh;
-  min-height: 50vh;
+  left: 5%;
+  margin: 0 auto;
   filter: brightness(1.5);
 }
 
 .defeatButton {
   position: absolute;
-  top: 75%;
-  left: 32%;
-  border: 1px solid white;
+  top: 65%;
+  left: 38%;
+  background: none;
+  border-color: white;
+  border-width: 2px;
+  font-size: 1.2rem;
   z-index: 1;
+}
+
+.defeatButton:focus-visible,
+.defeatButton:focus {
+  outline: none;
 }
