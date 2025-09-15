@@ -5,7 +5,6 @@
 }
 
 .game-container {
-  background-color: black;
   background-image: url("./assets/images/backgroundGame.jpg");
   background-repeat: no-repeat;
   background-size: auto 100%;
@@ -32,28 +31,28 @@
 .potions-0 {
   width: 11vh;
   height: 10vh;
-  top: 75%;
+  top: 72%;
   left: 3%;
 }
 
 .potions-1 {
   width: 11vh;
   height: 10vh;
-  top: 75%;
+  top: 72%;
   left: 25%;
 }
 
 .potions-2 {
   width: 11vh;
   height: 10vh;
-  top: 75%;
+  top: 72%;
   left: 46%;
 }
 
 .potions-3 {
   width: 11vh;
   height: 10vh;
-  top: 75%;
+  top: 72%;
   left: 67%;
 }
 
