@@ -1,0 +1,42 @@
+.defeat {
+  position: relative;
+  justify-content: center;
+  justify-items: center;
+  max-width: 50vh;
+  min-height: 40vh;
+}
+
+@font-face {
+  font-family: KochAltschrift;
+  src: url("./assets/fonts/KochAltschrift.ttf");
+}
+
+.defeat-message {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.7rem;
+  max-width: 30vh;
+  text-wrap-mode: wrap;
+  font-family: KochAltschrift;
+  transform: translate(-50%, 35%);
+  z-index: 1;
+}
+
+.defeat-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 50vh;
+  min-height: 50vh;
+  filter: brightness(1.5);
+}
+
+.defeatButton {
+  position: absolute;
+  top: 75%;
+  left: 32%;
+  border: 1px solid white;
+  z-index: 1;
+}
