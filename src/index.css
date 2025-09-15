@@ -1,5 +1,6 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: KochAltschrift;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -9,6 +10,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+  font-family: KochAltschrift;
+  src: url("./assets/fonts/KochAltschrift.ttf");
 }
 
 a {
@@ -21,8 +26,17 @@ a:hover {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 4.2rem;
   line-height: 1.1;
+  color: antiquewhite;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 button {
@@ -32,12 +46,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: "transparent";
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #9ec45d;
 }
 button:focus,
 button:focus-visible {
@@ -50,7 +64,7 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #9ec45d;
   }
   button {
     background-color: #f9f9f9;

@@ -4,65 +4,101 @@
   text-align: center;
 }
 
-.game-container {
-  background-image: url("./assets/images/backgroundGame.jpg");
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-position: center;
-  max-width: 130vh;
-  border-radius: 50%;
-  min-height: 90vh;
-  margin: 0 auto;
+.main-menu {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-}
-
-.potions-container {
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 65vh;
-  height: 61.5vh;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0) 20%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0) 65%,
+      rgba(0, 0, 0, 1) 100%
+    ),
+    url("./assets/images/main-menu-screen.png") center/cover no-repeat #000;
+}
+.main-menu::before {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  cursor: pointer;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.6));
+  z-index: 0;
 }
 
-.potions-0 {
-  width: 11vh;
-  height: 10vh;
-  top: 72%;
-  left: 3%;
+.main-menu > * {
+  position: relative;
+  z-index: 1;
 }
 
-.potions-1 {
-  width: 11vh;
-  height: 10vh;
-  top: 72%;
+.main-menu h1 {
+  position: absolute;
+  top: 2%;
+  left: 30%;
+  margin: 0;
+  opacity: 0;
+  animation: fadeSlideDown 1.2s ease-out forwards;
+}
+
+.main-menu h2 {
+  position: absolute;
+  top: 20%;
   left: 25%;
+  margin: 0;
+  color: #facc15;
+  font-size: 3.2rem;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
-.potions-2 {
-  width: 11vh;
-  height: 10vh;
-  top: 72%;
-  left: 46%;
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #707572, 0 0 20px #cbd7d6;
+    opacity: 0.8;
+  }
+  to {
+    text-shadow: 0 0 15px #fff, 0 0 30px #e09090, 0 0 60px #453143;
+    opacity: 1;
+  }
 }
 
-.potions-3 {
-  width: 11vh;
-  height: 10vh;
-  top: 72%;
-  left: 67%;
+@keyframes fadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.potions-0,
-.potions-1,
-.potions-2,
-.potions-3 {
+.door-button {
+  width: 17.5vh;
+  height: 45vh;
+  border-radius: 1rem;
   position: absolute;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 200px;
-  border-bottom-left-radius: 200px;
+  bottom: 19%;
+  left: 38%;
+  border-top-right-radius: 300px;
+  border-top-left-radius: 300px;
+  border-bottom-right-radius: 20px;
+  background-color: transparent;
+}
+
+.door-button:focus-visible,
+.door-button:focus {
+  outline: none;
+}
+
+.door-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 1.25rem rgb(252 231 172) inset;
 }
