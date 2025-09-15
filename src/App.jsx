@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import useSound from "use-sound";
 import simonPotions from "./assets/sounds/potions.mp3";
+import Defeat from "./Defeat";
 import "./App.css";
 
 function App() {
+  const dialogRef = useRef(null);
+
   //Colors
   const blueRef = useRef(null);
   const yellowRef = useRef(null);
@@ -100,6 +103,7 @@ function App() {
         setTimeout(() => {
           if (index) potions[index].ref.current.style.opacity = 0;
           setIsGameOn(false);
+          dialogRef.current.showModal();
         }, speed * 2);
         setIsAllowedToPlay(false);
       }
@@ -173,10 +177,18 @@ function App() {
         </div>
       ) : (
         <>
-          <div className="header">
-            <h1>Super Simon</h1>
-          </div>
-          <button onClick={initGame}>Start Game</button>
+          <Defeat ref={dialogRef} />
+          {/*   {!isGameOn && dialogRef ? (
+          ) : (
+            <>
+            <div className="main-menu">
+              <div className="header">
+                <h1>Super Simon</h1>
+              </div>
+            </div>
+            <button onClick={initGame}>Start Game</button>
+            </>
+            )} */}
         </>
       )}
     </>
