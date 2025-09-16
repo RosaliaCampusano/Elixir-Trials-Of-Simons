@@ -53,14 +53,14 @@ function Game({ state, setState }) {
   const speedGame = 400;
 
   //State of game
-  const [sequence, setSequence] = useState([]); // Almacenara la secuencia que va generando el juego
-  const [currentGame, setCurrentGame] = useState([]); //la secuencia que va ejecutando el juego
-  const [isAllowedToPlay, setIsAllowedToPlay] = useState(false); //booleano para permitir pulsar la tecla
-  const [speed, setSpeed] = useState(speedGame); //almacena los cambios de velocidad , se gestiona de forma progresiva
-  const [turn, setTurn] = useState(0); //almacena el numero de turno que estas ejecutando
-  const [pulses, setPulses] = useState(0); //almacena las pulsaciones
-  const [success, setSuccess] = useState(0); //almacena el numero de aciertos
-  const [isGameOn, setIsGameOn] = useState(false); //si el juego debe iniciarse
+  const [sequence, setSequence] = useState([]);
+  const [currentGame, setCurrentGame] = useState([]);
+  const [isAllowedToPlay, setIsAllowedToPlay] = useState(false);
+  const [speed, setSpeed] = useState(speedGame);
+  const [turn, setTurn] = useState(0);
+  const [pulses, setPulses] = useState(0);
+  const [success, setSuccess] = useState(0);
+  const [isGameOn, setIsGameOn] = useState(false);
   const [isDefeat, setDefeat] = useState(false);
 
   const initGame = () => {
@@ -86,7 +86,6 @@ function Game({ state, setState }) {
       setTimeout(() => {
         potions[index].ref.current.style.filter = "none";
         potions[index].ref.current.style.opacity = 0;
-        potions[index].ref.current.style.scale = 1;
         setCurrentGame([...currentGame, index]);
         setPulses(pulses + 1);
       }, speed / 2);
@@ -162,7 +161,9 @@ function Game({ state, setState }) {
   return (
     <>
       <div className="game-container" style={{ opacity: isDefeat ? 0.5 : 1 }}>
-        <div className="header">{/*  <h1>Turn {turn}</h1> */}</div>
+        <div className="header">
+          <h1>Turn {turn}</h1>
+        </div>
         <div className="potions-container">
           {potions.map((item, index) => {
             return (
