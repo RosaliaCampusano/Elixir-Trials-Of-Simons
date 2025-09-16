@@ -4,8 +4,11 @@ function MainMenu({ setState }) {
   return (
     <>
       <div className="main-menu">
-        <h1>The Elixir Trials of Simon</h1>
-        <h2>Knock the door and fate awaits inside the inn</h2>
+        <div className="main-menu-container">
+          <h1>The Elixir Trials of Simon</h1>
+          <h2>Knock the door and fate awaits inside the inn</h2>
+          <div className="fire-animation"></div>
+        </div>
         <button
           className="door-button"
           onClick={() => {
