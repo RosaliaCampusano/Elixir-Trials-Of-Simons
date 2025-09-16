@@ -1,16 +1,16 @@
 .game-container {
-  background-image: url("./assets/images/backgroundGame.jpg");
+  background-image: url("./assets/images/backgroundGame.png");
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: center;
   max-width: 130vh;
-  border-radius: 50%;
   min-height: 90vh;
   margin: 0 auto;
   display: flex;
 }
 
 .potions-container {
+  margin-top: 20px;
   justify-content: center;
   align-items: center;
   width: 65vh;
@@ -25,28 +25,28 @@
 .potions-0 {
   width: 11vh;
   height: 10vh;
-  top: 72%;
+  top: 63%;
   left: 3%;
 }
 
 .potions-1 {
   width: 11vh;
   height: 10vh;
-  top: 72%;
+  top: 63%;
   left: 25%;
 }
 
 .potions-2 {
   width: 11vh;
   height: 10vh;
-  top: 72%;
+  top: 63%;
   left: 46%;
 }
 
 .potions-3 {
   width: 11vh;
   height: 10vh;
-  top: 72%;
+  top: 63%;
   left: 67%;
 }
 
@@ -59,4 +59,34 @@
   border-top-right-radius: 10px;
   border-bottom-right-radius: 200px;
   border-bottom-left-radius: 200px;
+}
+
+@media (width <= 687px) {
+  .game-container {
+    width: 63.5vh;
+  }
+
+  h1 {
+    left: 30%;
+  }
+
+  .potions-container {
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 65vh;
+    height: 60vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    cursor: pointer;
+  }
+
+  .potions-0,
+  .potions-1,
+  .potions-2,
+  .potions-3 {
+    top: 65%;
+  }
 }
