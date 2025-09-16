@@ -1,6 +1,5 @@
 #root {
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -14,48 +13,78 @@
   align-items: center;
   text-align: center;
   overflow: hidden;
-  background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.9) 0%,
-      rgba(0, 0, 0, 0) 20%
-    ),
-    radial-gradient(
-      circle at center,
-      rgba(0, 0, 0, 0) 65%,
-      rgba(0, 0, 0, 1) 100%
-    ),
-    url("./assets/images/main-menu-screen.png") center/cover no-repeat #000;
-}
-.main-menu::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.6));
-  z-index: 0;
+  background-color: none;
+  background-image: url("./assets/images/main-menu-screen.png");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
 }
 
-.main-menu > * {
-  position: relative;
-  z-index: 1;
+.main-menu-container {
+  margin-top: 20px;
+  min-width: 100vh;
+  min-height: 100vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-menu h1 {
   position: absolute;
   top: 2%;
-  left: 30%;
-  margin: 0;
+  left: 10%;
   opacity: 0;
   animation: fadeSlideDown 1.2s ease-out forwards;
 }
 
 .main-menu h2 {
   position: absolute;
-  top: 20%;
-  left: 25%;
+  top: 18%;
+  left: 8%;
   margin: 0;
   color: #facc15;
-  font-size: 3.2rem;
+  font-size: 3.4rem;
   animation: glow 2s ease-in-out infinite alternate;
+}
+
+.fire-animation {
+  position: absolute;
+  width: 5vh;
+  height: 3vh;
+  top: 42%;
+  left: 60%;
+  border-radius: 50%;
+  background-color: #713100;
+  filter: blur(14px);
+  animation: animation 1s ease-in-out infinite alternate;
+}
+
+.door-button {
+  width: 17vh;
+  height: 40vh;
+  border-radius: 1rem;
+  position: relative;
+  bottom: -55px;
+  left: -6%;
+  border-top-right-radius: 300px;
+  border-top-left-radius: 300px;
+  border-bottom-right-radius: 20px;
+  background-color: transparent;
+}
+
+.door-button:focus-visible,
+.door-button:focus {
+  outline: none;
+}
+
+.door-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 1.25rem rgb(252 231 172) inset;
 }
 
 @keyframes glow {
@@ -80,25 +109,98 @@
   }
 }
 
-.door-button {
-  width: 17.5vh;
-  height: 45vh;
-  border-radius: 1rem;
-  position: absolute;
-  bottom: 19%;
-  left: 38%;
-  border-top-right-radius: 300px;
-  border-top-left-radius: 300px;
-  border-bottom-right-radius: 20px;
-  background-color: transparent;
+@keyframes animation {
+  0% {
+    box-shadow: 0 0 20px #f5bc27, 10px -10px 30px #feec85,
+      -20px -20px 40px #ffae34, 20px -40px 50px #ec760c,
+      -20px -60px 60px #cd4606, 0 -80px 70px #973716, 10px -90px 80px #451b0e;
+  }
+  100% {
+    box-shadow: 0 0 20px #f5bc27, 10px -10px 30px #fefcc9,
+      -20px -20px 40px #feec85, 22px -42px 60px #ffae34,
+      -22px -58px 50px #ec760c, 0 -82px 80px #cd4606, 10px -90px 80px #973716;
+  }
 }
 
-.door-button:focus-visible,
-.door-button:focus {
-  outline: none;
+@media (width <= 837px) {
+  .main-menu {
+    background-image: url("./assets/images/main-menu-screen.png");
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center;
+  }
+
+  .main-menu-container {
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-menu h1 {
+    position: absolute;
+    text-align: center;
+    font: 3.5rem;
+    top: 2%;
+    left: 10%;
+    opacity: 0;
+    animation: fadeSlideDown 1.2s ease-out forwards;
+  }
+
+  .main-menu h2 {
+    position: absolute;
+    max-width: 70vh;
+    font-size: 1.3rem;
+    top: 18%;
+    left: 18%;
+    color: #facc15;
+    font-size: 3.4rem;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .door-button {
+    width: 17vh;
+    height: 10vh;
+    border-radius: 1rem;
+    position: relative;
+    bottom: -55px;
+    left: -9%;
+    border-top-right-radius: 300px;
+    border-top-left-radius: 300px;
+    border-bottom-right-radius: 20px;
+    background-color: transparent;
+  }
 }
 
-.door-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 1.25rem rgb(252 231 172) inset;
+@media (width <= 687px) {
+  .main-menu h1 {
+    position: absolute;
+    text-align: center;
+    font-size: 3.8rem;
+    top: 2%;
+    left: 22%;
+    opacity: 0;
+    animation: fadeSlideDown 1.2s ease-out forwards;
+  }
+  .main-menu h2 {
+    max-width: 40vh;
+    top: 18%;
+    left: 28%;
+    margin: 0;
+    color: #facc15;
+    font-size: 3.4rem;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  .door-button {
+    width: 17vh;
+    height: 40vh;
+    border-radius: 1rem;
+    position: relative;
+    bottom: -55px;
+    left: -18%;
+    border-top-right-radius: 300px;
+    border-top-left-radius: 300px;
+    border-bottom-right-radius: 20px;
+    background-color: transparent;
+  }
 }
