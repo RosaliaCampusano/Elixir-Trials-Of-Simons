@@ -27,22 +27,22 @@ function Game({ state, setState }) {
   const potions = [
     {
       color: "#0e3e5eff",
-      ref: yellowRef,
+      ref: blueRef,
       sound: "one",
     },
     {
       color: "#811b0bff",
-      ref: blueRef,
+      ref: redRef,
       sound: "two",
     },
     {
       color: "#2e540bff",
-      ref: redRef,
+      ref: greenRef,
       sound: "three",
     },
     {
       color: "#bd5b15ff",
-      ref: greenRef,
+      ref: yellowRef,
       sound: "four",
     },
   ];
@@ -62,6 +62,7 @@ function Game({ state, setState }) {
   const [success, setSuccess] = useState(0);
   const [isGameOn, setIsGameOn] = useState(false);
   const [isDefeat, setDefeat] = useState(false);
+  const [isPlayingSequence, setIsPlayingSequence] = useState(false);
 
   const initGame = () => {
     randomNUmber();
@@ -70,14 +71,18 @@ function Game({ state, setState }) {
 
   const randomNUmber = () => {
     setIsAllowedToPlay(false);
-    const randomNUmber = Math.floor(
+    const randomNumber = Math.floor(
       Math.random() * (maxNumber - minNumber + 1) + minNumber
     );
-    setSequence([...sequence, randomNUmber]);
-    setTurn(turn + 1);
+    setSequence((prev) => [...prev, randomNumber]);
+    setTurn((prev) => prev + 1);
   };
 
   const handlerClick = (index) => {
+    if (isPlayingSequence) {
+      return;
+    }
+
     if (isAllowedToPlay) {
       play({ id: potions[index].sound });
       potions[index].ref.current.style.filter = "blur(15px)";
@@ -136,6 +141,7 @@ function Game({ state, setState }) {
 
   useEffect(() => {
     if (!isAllowedToPlay) {
+      setIsPlayingSequence(true);
       sequence.map((item, index) => {
         setTimeout(() => {
           play({ id: potions[item].sound });
@@ -149,7 +155,11 @@ function Game({ state, setState }) {
         }, speed * index);
       });
     }
-    setIsAllowedToPlay(true);
+    // Wait until the sequence ends + 1 extra second before allowing play
+    setTimeout(() => {
+      setIsPlayingSequence(false);
+      setIsAllowedToPlay(true);
+    }, speed * sequence.length);
   }, [sequence]);
 
   useEffect(() => {
