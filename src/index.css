@@ -26,16 +26,29 @@ a:hover {
 }
 
 h1 {
-  font-size: 4.2rem;
+  position: absolute;
+  font-size: 5.2rem;
   line-height: 1.1;
   color: antiquewhite;
+  top: 75%;
+  left: 45%;
+  animation: fadeSlideDown 1.2s ease-out forwards;
+}
+
+@keyframes fadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 html,
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
