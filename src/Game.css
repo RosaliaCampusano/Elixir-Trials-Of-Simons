@@ -108,8 +108,39 @@
 
 @media (width <= 430px) {
   .game-container {
-    width: 50vh;
-    left: 40%;
-    background-size: cover;
+    position: relative;
+    width: 55.5vh;
+    height: 60vh;
+    justify-content: center;
+    justify-items: center;
+    background-size: auto 100%;
+  }
+
+  .game-container h1 {
+    top: 76%;
+    left: 27%;
+  }
+
+  .potions-0,
+  .potions-1,
+  .potions-2,
+  .potions-3 {
+    top: 70%;
+  }
+
+  .potions-0 {
+    left: 6%;
+  }
+
+  .potions-1 {
+    left: 25%;
+  }
+
+  .potions-2 {
+    left: 46%;
+  }
+
+  .potions-3 {
+    left: 67%;
   }
 }

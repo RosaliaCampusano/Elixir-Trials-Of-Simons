@@ -215,4 +215,8 @@
     opacity: 0;
     animation: fadeSlideDown 1.2s ease-out forwards;
   }
+
+  .door-button {
+    left: -21%;
+  }
 }

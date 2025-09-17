@@ -77,12 +77,21 @@
     width: 40vh;
     height: 50vh;
     top: -10%;
-    left: -17%;
+    left: -5%;
   }
 
   .defeat-img {
     position: absolute;
-    left: -1%;
+    left: 4%;
     top: -3%;
+  }
+
+  .defeat-message {
+    left: 31%;
+  }
+
+  .defeatButton {
+    color: white;
+    left: 42%;
   }
 }
