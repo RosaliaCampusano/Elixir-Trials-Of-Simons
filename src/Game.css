@@ -89,4 +89,26 @@
   .potions-3 {
     top: 65%;
   }
+
+  .potions-0 {
+    left: 9%;
+  }
+  .potions-1 {
+    left: 30%;
+  }
+
+  .potions-2 {
+    left: 50%;
+  }
+
+  .potions-3 {
+    left: 72%;
+  }
+}
+
+@media (width <= 430px) {
+  .game-container {
+    width: 50vh;
+    background-size: cover;
+  }
 }
