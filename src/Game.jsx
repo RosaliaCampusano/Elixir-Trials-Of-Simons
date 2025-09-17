@@ -1,11 +1,26 @@
 import { useState, useEffect, useRef } from "react";
 import useSound from "use-sound";
+import defeatMusic from "./assets/sounds/defeat.mp3";
 import simonPotions from "./assets/sounds/potions.mp3";
 import Defeat from "./Defeat";
 import "./Game.css";
 
-function Game({ state, setState }) {
+function Game({
+  state,
+  setState,
+  playGameMusic,
+  pauseGameMusic,
+  playTalkingSound,
+  pauseTalkingSound,
+}) {
   const defeatRef = useRef(null);
+
+  const [playDefeatSound, { pause: pauseDefeatSound }] = useSound(defeatMusic, {
+    volumen: 0.5,
+    loop: true,
+  });
+
+  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
 
   //Sounds
   const [play] = useSound(simonPotions, {
@@ -68,8 +83,8 @@ function Game({ state, setState }) {
     const randomNumber = Math.floor(
       Math.random() * (maxNumber - minNumber + 1) + minNumber
     );
-    setSequence((prev) => [...prev, randomNumber]);
-    setTurn((prev) => prev + 1);
+    setSequence([...sequence, randomNumber]);
+    setTurn(turn + 1);
   };
 
   const handlerClick = (index) => {
@@ -93,7 +108,7 @@ function Game({ state, setState }) {
 
   useEffect(() => {
     if (pulses > 0) {
-      if (Number(sequence[pulses - 1] === Number(currentGame[pulses - 1]))) {
+      if (sequence[pulses - 1] === currentGame[pulses - 1]) {
         setSuccess(success + 1);
       } else {
         const index = sequence[pulses - 1];
@@ -134,39 +149,65 @@ function Game({ state, setState }) {
   }, [success]);
 
   useEffect(() => {
-    if (!isAllowedToPlay) {
-      setIsPlayingSequence(true);
-      sequence.map((item, index) => {
-        setTimeout(() => {
-          play({ id: potions[item].sound });
-          potions[item].ref.current.style.filter = "blur(15px)";
-          potions[item].ref.current.style.opacity = 1;
-          potions[item].ref.current.style.transition = "all 0.3s ease-out";
-          setTimeout(() => {
-            potions[item].ref.current.style.filter = "none";
-            potions[item].ref.current.style.opacity = 0;
-          }, speed / 2);
-        }, speed * index);
-      });
+    if (sequence.length === 0) {
+      return;
     }
-    // Wait until the sequence ends + 1 extra second before allowing play
+
+    setIsPlayingSequence(true);
+    let delay = 0;
+    sequence.forEach((item) => {
+      setTimeout(() => {
+        play({ id: potions[item].sound });
+        potions[item].ref.current.style.filter = "blur(15px)";
+        potions[item].ref.current.style.opacity = 1;
+        potions[item].ref.current.style.transition = "all 0.3s ease-out";
+        setTimeout(() => {
+          potions[item].ref.current.style.filter = "none";
+          potions[item].ref.current.style.opacity = 0;
+        }, speed / 2);
+      }, delay);
+      delay += speed;
+    });
     setTimeout(() => {
       setIsPlayingSequence(false);
       setIsAllowedToPlay(true);
-    }, speed * sequence.length);
-  }, [sequence]);
+    }, delay);
+  }, [sequence, play]);
+
+  const toggleMusic = () => {
+    if (isMusicPlaying) {
+      pauseGameMusic();
+      pauseTalkingSound();
+      setIsMusicPlaying(false);
+    } else {
+      playGameMusic();
+      playTalkingSound();
+      setIsMusicPlaying(true);
+    }
+  };
 
   useEffect(() => {
-    if (state === 1 && !isGameOn) {
+    if (state === 1) {
       initGame();
     }
-  }, []);
+  }, [state]);
+
+  useEffect(() => {
+    if (isDefeat) {
+      pauseGameMusic();
+      pauseTalkingSound();
+      playDefeatSound();
+    }
+  }, [isDefeat, pauseGameMusic, pauseTalkingSound, playDefeatSound]);
 
   return (
     <>
       <div className="game-container" style={{ opacity: isDefeat ? 0.5 : 1 }}>
         <div className="header">
           <h1>Turn {turn}</h1>
+          <button onClick={toggleMusic}>
+            {isMusicPlaying ? "Pause Music" : "Play Music"}
+          </button>
         </div>
         <div className="potions-container">
           {potions.map((item, index) => {
@@ -185,7 +226,11 @@ function Game({ state, setState }) {
             );
           })}
         </div>
-        <Defeat ref={defeatRef} setState={setState} />
+        <Defeat
+          ref={defeatRef}
+          setState={setState}
+          pauseDefeatSound={pauseDefeatSound}
+        />
       </div>
     </>
   );
