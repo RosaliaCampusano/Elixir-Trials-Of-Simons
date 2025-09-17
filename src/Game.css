@@ -109,6 +109,7 @@
 @media (width <= 430px) {
   .game-container {
     width: 50vh;
+    left: 40%;
     background-size: cover;
   }
 }
