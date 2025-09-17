@@ -5,12 +5,6 @@ import Defeat from "./Defeat";
 import "./Game.css";
 
 function Game({ state, setState }) {
-  //Colors
-  const blueRef = useRef(null);
-  const yellowRef = useRef(null);
-  const greenRef = useRef(null);
-  const redRef = useRef(null);
-
   const defeatRef = useRef(null);
 
   //Sounds
@@ -27,22 +21,22 @@ function Game({ state, setState }) {
   const potions = [
     {
       color: "#0e3e5eff",
-      ref: blueRef,
+      ref: useRef(null),
       sound: "one",
     },
     {
       color: "#811b0bff",
-      ref: redRef,
+      ref: useRef(null),
       sound: "two",
     },
     {
       color: "#2e540bff",
-      ref: greenRef,
+      ref: useRef(null),
       sound: "three",
     },
     {
       color: "#bd5b15ff",
-      ref: yellowRef,
+      ref: useRef(null),
       sound: "four",
     },
   ];
