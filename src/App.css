@@ -87,6 +87,11 @@
   box-shadow: 0 0 1.25rem rgb(252 231 172) inset;
 }
 
+.button-menu-music {
+  position: relative;
+  left: 0%;
+}
+
 @keyframes glow {
   from {
     text-shadow: 0 0 5px #fff, 0 0 10px #707572, 0 0 20px #cbd7d6;
