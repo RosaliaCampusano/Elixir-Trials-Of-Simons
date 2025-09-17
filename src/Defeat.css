@@ -57,3 +57,32 @@
 .defeatButton:focus {
   outline: none;
 }
+
+@media (width <= 687px) {
+  .defeat-img {
+    width: 45vh;
+  }
+
+  .defeat-message {
+    font-size: 1.3rem;
+  }
+
+  .defeatButton {
+    left: 40%;
+  }
+}
+
+@media (width <= 430px) {
+  .defeat {
+    width: 40vh;
+    height: 50vh;
+    top: -10%;
+    left: -17%;
+  }
+
+  .defeat-img {
+    position: absolute;
+    left: -1%;
+    top: -3%;
+  }
+}
