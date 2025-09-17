@@ -204,3 +204,15 @@
     background-color: transparent;
   }
 }
+
+@media (width <= 430px) {
+  .main-menu h1 {
+    text-align: center;
+    max-width: 35vh;
+    font-size: 3.5rem;
+    top: -1%;
+    left: 32%;
+    opacity: 0;
+    animation: fadeSlideDown 1.2s ease-out forwards;
+  }
+}
