@@ -3,7 +3,7 @@ import defeatImage from "./assets/images/defeatBackground.png";
 import "./Defeat.css";
 import { useState, useEffect } from "react";
 
-function Defeat({ ref, setState }) {
+function Defeat({ ref, setState, pauseDefeatSound }) {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -13,6 +13,7 @@ function Defeat({ ref, setState }) {
   }, []);
 
   const handlerClick = () => {
+    pauseDefeatSound();
     setState(0);
   };
 
