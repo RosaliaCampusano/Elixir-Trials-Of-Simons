@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import useSound from "use-sound";
 import defeatMusic from "./assets/sounds/defeat.mp3";
 import simonPotions from "./assets/sounds/potions.mp3";
+import soundButton from "./assets/images/sound-button.png";
+import pauseButton from "./assets/images/pause-button.png";
 import Defeat from "./Defeat";
 import "./Game.css";
 
@@ -12,6 +14,8 @@ function Game({
   pauseGameMusic,
   playTalkingSound,
   pauseTalkingSound,
+  playMainMenuMusic,
+  setMainMenuMusicIsPlaying,
 }) {
   const defeatRef = useRef(null);
 
@@ -205,9 +209,15 @@ function Game({
       <div className="game-container" style={{ opacity: isDefeat ? 0.5 : 1 }}>
         <div className="header">
           <h1>Turn {turn}</h1>
-          <button onClick={toggleMusic}>
-            {isMusicPlaying ? "Pause Music" : "Play Music"}
-          </button>
+          <button
+            onClick={toggleMusic}
+            className="music-button"
+            style={{
+              backgroundImage: isMusicPlaying
+                ? `url(${soundButton})`
+                : `url(${pauseButton})`,
+            }}
+          ></button>
         </div>
         <div className="potions-container">
           {potions.map((item, index) => {
@@ -230,6 +240,8 @@ function Game({
           ref={defeatRef}
           setState={setState}
           pauseDefeatSound={pauseDefeatSound}
+          playMainMenuMusic={playMainMenuMusic}
+          setMainMenuMusicIsPlaying={setMainMenuMusicIsPlaying}
         />
       </div>
     </>
