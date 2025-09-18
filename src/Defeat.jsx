@@ -3,7 +3,13 @@ import defeatImage from "./assets/images/defeatBackground.png";
 import "./Defeat.css";
 import { useState, useEffect } from "react";
 
-function Defeat({ ref, setState, pauseDefeatSound }) {
+function Defeat({
+  ref,
+  setState,
+  pauseDefeatSound,
+  playMainMenuMusic,
+  setMainMenuMusicIsPlaying,
+}) {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -14,6 +20,8 @@ function Defeat({ ref, setState, pauseDefeatSound }) {
 
   const handlerClick = () => {
     pauseDefeatSound();
+    setMainMenuMusicIsPlaying(true);
+    playMainMenuMusic();
     setState(0);
   };
 
