@@ -87,8 +87,16 @@
   box-shadow: 0 0 1.25rem rgb(252 231 172) inset;
 }
 
-.button-menu-music {
-  position: relative;
+.music-button {
+  position: absolute;
+  width: 10vh;
+  height: 10vh;
+  background-position: center;
+  background-size: auto 100%;
+  border: none;
+  background-color: transparent;
+  filter: brightness(2);
+  top: 0%;
   left: 0%;
 }
 
