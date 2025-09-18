@@ -61,6 +61,16 @@
   border-bottom-left-radius: 200px;
 }
 
+.music-button {
+  position: absolute;
+  width: 5vh;
+  height: 5vh;
+  background-position: center;
+  background-size: auto 100%;
+  background-color: transparent;
+  left: 0%;
+}
+
 @media (width <= 687px) {
   .game-container {
     width: 63.5vh;
