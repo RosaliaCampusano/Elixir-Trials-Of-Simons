@@ -25,6 +25,7 @@
   text-align: center;
   max-width: 30vh;
   text-wrap-mode: wrap;
+  color: white;
   top: 32%;
   left: 29%;
   z-index: 1;
@@ -51,6 +52,7 @@
   border-width: 2px;
   font-size: 1.2rem;
   z-index: 1;
+  color: white;
 }
 
 .defeatButton:focus-visible,
